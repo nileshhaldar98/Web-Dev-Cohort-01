@@ -5,17 +5,6 @@ Welcome to the **Chai Code Cohort**! This repository contains all the projects a
 ## 📁 Folder Structure
 
 ---
-
-## 📌 **Backend Projects**
-------------------------------------------------------------------------------------------
-
-## 🎨 **Frontend Projects**
-
----
-
-## 🌍 **Full Stack Projects**
----
-
 ## 🖥️ **HTML, CSS, JS Normal Projects**
 
 Basic projects Of cohort
@@ -27,6 +16,18 @@ Basic projects Of cohort
   - BMI index 
   - Review Collector
 ---
+
+
+## 📌 **Backend Projects**
+
+---
+## 🎨 **Frontend Projects**
+
+---
+
+## 🌍 **Full Stack Projects**
+---
+
 
 ---
 
