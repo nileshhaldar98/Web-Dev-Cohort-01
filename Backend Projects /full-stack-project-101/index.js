@@ -1,6 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
-import cors from"cors"
+import cors from "cors"
 import db from "./utils/db.js";
 
 
@@ -10,12 +10,12 @@ const app = express()
 
 app.use(cors ({
         origin:process.env.BASE_URL,
-        methods:['GET','POST','DELET','OPTION']
+        methods:['GET','POST','DELET','OPTIONS']
 }))
 app.use(express.json());
 app.use(express.urlencoded({extended:true }))
 
-const port = 4000 || process.env.PORT;
+const port =  process.env.PORT|| 4000;
 
 app.get('/', (req, res) => {
   res.send('Cohort!')
@@ -31,7 +31,7 @@ app.get('/piyush',(req,res)=>{
 app.get('/haldar',(req,res)=>{
         res.send('hey Haldar from!');
 })
-
+db();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
