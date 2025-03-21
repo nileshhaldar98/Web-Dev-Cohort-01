@@ -19,7 +19,9 @@ Basic projects Of cohort
 
 
 ## 📌 **Backend Projects**
-
+- **Authentication Project**: User authentication system with secure login/signup
+  - Features: JWT authentication, password hashing, MongoDB integration
+  - Tech Stack: Node.js, Express, MongoDB
 
 
 ---
