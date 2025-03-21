@@ -28,14 +28,3 @@ Basic projects Of cohort
 ## 🌍 **Full Stack Projects**
 ---
 
-
----
-
-##
-
-
-
----
-
-##
-
