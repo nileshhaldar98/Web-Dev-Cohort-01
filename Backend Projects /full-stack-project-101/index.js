@@ -4,6 +4,8 @@ import cors from "cors"
 import db from "./utils/db.js";
 //import all the routes
 import userRoutes from "./routes/user.routes.js"
+//cookie import 
+import cookieParser from "cookie-parser";
 
 
 dotenv.config();
@@ -16,6 +18,8 @@ app.use(cors ({
 }))
 app.use(express.json());
 app.use(express.urlencoded({extended:true }))
+//to accept from the cookie parser
+app.use(cookieParser());
 
 const port =  process.env.PORT|| 4000;
 
