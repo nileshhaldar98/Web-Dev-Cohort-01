@@ -10,12 +10,14 @@
   "author": "nileshhaldar98",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mangodb": "^1.0.0",
     "mongodb": "^6.15.0",
-    "mongoose": "^8.12.1"
+    "mongoose": "^8.12.1",
+    "nodemailer": "^6.10.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
