@@ -3,6 +3,7 @@ import crypto from "crypto";
 import nodemailer from "nodemailer"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { trace } from "console";
 
 //register User
 const registerUser = async (req,res) =>{
@@ -24,7 +25,7 @@ try{
         email,
         password
     }) 
-    console.log(user);
+
 
     if(!user){
         return res.status(400).json({
@@ -34,11 +35,10 @@ try{
     const token = crypto.randomBytes(32).toString("hex")
     
     user.verificationToken = token; 
-    console.log(token);
+
 
     await user.save();
     //send mail
-    
     const transporter = nodemailer.createTransport({
       host: process.env.MAILTRAP_HOST,
       port: process.env.MAILTRAP_PORT,
@@ -48,12 +48,11 @@ try{
         pass:  process.env.MAILTRAP_PASSWORD,
       },
     });
-    console.log(user.email);
     const mailOption = {
         from:process.env.MAILTRAP_SENDERMAIL,
         to : user.email,
         subject:"verify Your Email",
-        html: `<p>Please click <a href="${process.env.BASE_URL}/api/v1/user/verify/${token}">here</a> to verify your email.</p>`,
+        html: `<p>Please click <a href="${process.env.BASE_URL}/api/v1/users/verify/${token}">here</a> to verify your email.</p>`,
     } ;
      await transporter.sendMail(mailOption);
      res.status(201).json({
@@ -73,7 +72,6 @@ try{
 const verifyUser = async(req,res) =>{
 
     const {token} = req.params;
-    console.log(token);
     if(!token){
         return res.status(400).json({
             message:"Invalid Token"
@@ -95,7 +93,7 @@ const verifyUser = async(req,res) =>{
 
 };
 //login user
-const login = async (req,res) => {
+const loginUser = async (req,res) => {
 const {email,password} = req.body
 if(!email || !password){
     return res.status(400).json({
@@ -110,19 +108,17 @@ try {
     })
     }
    const isMatch = await bcrypt.compare(password, user.password)
-   console.log("login flag:",isMatch);
    if(!isMatch){
     return res.status(400).json({
         message : "Invalid email or password"
     });
    }
-  const token =  jwt.sign({id:user._id,role:user.role},"shhhhhh",{expiresIn:'1hr'})
+  const token =  jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRE_TIME})
 const cookieOptions={
     httpOnly:true,
     secure:true,
     maxAge:24*60*60*1000
 }
-console.log(token);
 res.cookie("token", token,cookieOptions)
 res.status(200).json({
     success:true,
@@ -141,5 +137,97 @@ res.status(200).json({
         error,
     })
 }
+};
+// user profile
+const  userProfile = async (req,res) =>  {
+
+
+    try {
+
+        const user = User.findById(req.user.id).select('-password');
+        console.log(!user);
+        if(!user){
+            return res.status(400).json({
+                success:false,
+                message:"invalid User"
+            })
+        }
+
+        return res.status(400).json({
+            success:true,
+            message:"Login Suceessfull"
+        })
+
+    } catch (error) {
+
+        return res.status(400).json({
+            success:false,
+            message:"error in log in ",
+
+        })
+        
+    }
+
+
+
+
+
 }
-export {registerUser,verifyUser,login}
+//forgot Password
+const  forgotPasssword = async (req,res) => {
+
+
+    try {
+        
+
+
+
+    } catch (error) {
+        
+    }
+
+
+
+
+
+}
+//reset Password
+const  resetPassword = async (req,res)=>{
+
+
+    try {
+        
+
+
+
+    } catch (error) {
+        
+    }
+
+
+
+
+
+}
+//logoutUser
+const  logoutUser = async (req,res)=>{
+
+
+    try {
+        
+
+
+
+    } catch (error) {
+        
+    }
+
+
+
+
+
+}
+
+
+
+export {registerUser,verifyUser,loginUser,userProfile,logoutUser,resetPassword}
