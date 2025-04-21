@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #000;
+    min-height: 100vh;
+    padding: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    background: #000;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+#editor-container, #preview-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    overflow: hidden;
+    border: none;
+    border-right: 1px solid #333;
+}
+
+#preview-container {
+    border-right: none;
+    border-left: 1px solid #e0e0e0;
+}
+
+h1 {
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 16px;
+    margin: 0;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+#editor, #preview {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+#editor-textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 16px;
+    background: #111;
+    color: #fff;
+    caret-color: #fff;
+}
+
+#editor-textarea:focus {
+    box-shadow: 0 0 15px rgba(66, 220, 255, 0.2);
+}
+
+#clear-button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 16px auto;
+    width: 95%;
+    max-width: 1200px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+#clear-button:hover {
+    background: #444;
+}
+
+#preview {
+    line-height: 1.6;
+    color: #fff;
+    padding: 20px;
+}
+
+#preview h1, #preview h2, #preview h3, #preview h4, #preview h5, #preview h6 {
+    margin: 1em 0 0.5em;
+    line-height: 1.2;
+}
+
+#preview a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+}
+
+#preview a:hover {
+    text-shadow: 0 0 8px rgba(66, 220, 255, 0.5);
+}
+
+#preview li {
+    margin: 0.5em 0;
+    margin-left: 1.5em;
+}
+
+@media (max-width: 768px) {
+    .containter {
+        flex-direction: column;
+        margin: 12px auto;
+        padding: 0 12px;
+    }
+
+    #editor-container, #preview-container {
+        width: 100%;
+        height: 50vh;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+
+    #editor-textarea {
+        font-size: 13px;
+    }
+}
+
+::selection {
+    background: #333;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
