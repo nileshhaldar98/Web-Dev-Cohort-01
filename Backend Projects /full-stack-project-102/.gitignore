@@ -1,0 +1,9 @@
+# Ignore system files and build directories
+.DS_Store
+.env
+dist
+build
+.vscode
+.idea
+*.log
+node_modules
