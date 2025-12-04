@@ -1,0 +1,28 @@
+{
+  "name": "backend-with-prisma",
+  "version": "1.0.0",
+  "description": "this is backend trial project with the prisma ",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^6.19.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "nodemailer": "^7.0.11",
+    "nodemon": "^3.1.11",
+    "pg": "^8.16.3",
+    "prisma": "^6.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.15.6"
+  }
+}
