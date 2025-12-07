@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import dotenv from "dotenv";
 import sendMail from "../utils/send.email.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -99,4 +100,44 @@ const verifyUser = async (req,res) => {
         })
     }
 }
-export { registerUser,verifyUser}
+const loginUser = async (req,res) => { 
+
+   try {
+     const { email, password } = req.body;
+    
+     if (!email || !password) { 
+         return res.status(400).json({
+             message:"ALl Credentials are required"
+         })
+     }
+     const user = await prisma.user.findUnique({
+         where: {
+             email: email
+         }
+     })
+     if (!user) {
+         return res.status(400).json({
+             message:"User not registerd"
+         })
+     }
+     
+     const isValid = await bcrypt.compare(password, user.password);
+     
+     if (!isValid) { 
+         return res.status(400).json({
+             message:"entered wrong password"
+         })
+     }
+ 
+     return res.status(200).json({
+         message:"login succssfull "
+     })
+ 
+   } catch (error) {
+       return res.status(400).json({
+           message: "error in login ",
+           error
+       })
+   }
+}
+export { registerUser,verifyUser,loginUser}

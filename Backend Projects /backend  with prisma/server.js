@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import userRoutes from "./routes/users.routes.js";
-import sendMail from "./utils/send.email.js";
+import cookieParser from "cookie-parser";
 
 
 dotenv.config();
@@ -19,6 +19,7 @@ app.use(
     credentials:true
   }) 
 );
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/users', userRoutes);
 
